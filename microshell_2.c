@@ -3,7 +3,7 @@
 #include <string.h>
 
 /*not needed in exam, but necessary if you want to use this tester:
-https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh*/
+https://github.com/zsidki/Microshell-Exam_rank04/blob/master/test.sh*/
 // #ifdef TEST_SH
 // # define TEST		1
 // #else
@@ -106,6 +106,6 @@ int	main(int argc, char *argv[], char *env[])
 		;
 
 	// if (TEST)		// not needed in exam, but necessary if you want to use this tester:
-	// 	while (1);	// https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh
+	// 	while (1);	// https://github.com/zsidki/Microshell-Exam_rank04/blob/master/test.sh
 	return (0);
 }
