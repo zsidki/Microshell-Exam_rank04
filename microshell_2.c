@@ -2,6 +2,14 @@
 #include <sys/wait.h>
 #include <string.h>
 
+/*not needed in exam, but necessary if you want to use this tester:
+https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh*/
+// #ifdef TEST_SH
+// # define TEST		1
+// #else
+// # define TEST		0
+// #endif
+
 void	ft_putstr_fd2(char *str)
 {
 	int	i;
@@ -14,6 +22,8 @@ void	ft_putstr_fd2(char *str)
 
 int ft_execute(char *argv[], int i, char *env[])
 {
+	//overwrite ; or | or NULL whith NULL to use the array as input for execve.
+	//we are here in the child so it has no impact in the Parrent Proces.
 	argv[i] = NULL;
 	execve(argv[0], argv, env);
 	ft_putstr_fd2("error: cannot execute ");
@@ -29,6 +39,7 @@ int	main(int argc, char *argv[], char *env[])
 	int fd[2];
 	int tmp_fd;
 	(void)argc;	// is needed in exam, because the exam tester compiles with -Wall -Wextra -Werror
+
 	pid = 0;
 	i = 0;
 	tmp_fd = dup(STDIN_FILENO);
@@ -36,6 +47,7 @@ int	main(int argc, char *argv[], char *env[])
 	{
 		argv = &argv[i + 1];	//the new argv start after the ; or |
 		i = 0;
+		//count until we have all invormations to execute the next child;
 		while (argv[i] && strcmp(argv[i], ";") && strcmp(argv[i], "|"))
 			i++;
 		if (strcmp(argv[0], "cd") == 0) //cd
@@ -88,6 +100,12 @@ int	main(int argc, char *argv[], char *env[])
 		}
 	}
 	close(tmp_fd);
-	while(waitpid(-1, NULL, WUNTRACED) != -1);
+
+	//waitpid returns -1 when all created child processes have returned
+	while(waitpid(-1, NULL, WUNTRACED) != -1)
+		;
+
+	// if (TEST)		// not needed in exam, but necessary if you want to use this tester:
+	// 	while (1);	// https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh
 	return (0);
 }
