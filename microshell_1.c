@@ -40,7 +40,7 @@ int cd(char **av, int len) {
 
 int main(int ac, char **av, char **env)
 {
-	int i=1,j,k,l;
+	int i=1,j,k,l; // j = ; // l = pipe // k = calcule line
 	int   p[2];
 	pid_t pid;
 	int   fd_in;
