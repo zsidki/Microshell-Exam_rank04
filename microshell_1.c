@@ -38,16 +38,16 @@ int cd(char **av, int len) {
     return (0);
 }
 
-int main(int ac, char **av, char **env)
+int main(int argc, char **av, char **env)
 {
 	int i=1,j,k,l; // j = ; // l = pipe // k = calcule line
 	int   p[2];
 	pid_t pid;
 	int   fd_in;
 
-	while (i < ac) {
+	while (i < argc) {
 		j=i, k=i, l=i;
-		while (j < ac && strncmp(av[j], ";", 2)) // j = limite semicolon
+		while (j < argc && strncmp(av[j], ";", 2)) // j = limite semicolon
 			j++;
 		fd_in = 0;
 		while (k < j) 
