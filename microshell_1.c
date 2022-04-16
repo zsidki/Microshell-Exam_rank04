@@ -46,13 +46,12 @@ int main(int argc, char **av, char **env)
 	int   fd_in;
 
 	while (i < argc) {
-		j=i, k=i, l=i;
+		j = i, k = i, l = i; fd_in = 0;
 		while (j < argc && strncmp(av[j], ";", 2)) // j = limite semicolon
 			j++;
-		fd_in = 0;
 		while (k < j) 
 		{ // Tant qu'il y a des pipes
-			l=k;
+			l = k;
 			while (l < j && strncmp(av[l], "|", 2)) // [k - l] -> troncon cmd + arg
 				l++;
 			char *argv[l - k + 1];
@@ -86,7 +85,7 @@ int main(int argc, char **av, char **env)
 					close(fd_in);
 				fd_in = p[0];
     		}
-			k=l+1;
+			k = l+1;
 		}
 		close(fd_in);
 		i=j+1;
