@@ -88,7 +88,7 @@ int main(int argc, char **av, char **env)
 			k = l+1;
 		}
 		close(fd_in);
-		i=j+1;
+		i = j + 1;
 	}
 	return (0);
 }
